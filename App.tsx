@@ -5,7 +5,8 @@ import { StatusBar } from "react-native";
 
 import type { RootStackParamList } from "./app/navigation/types";
 import CategoriesScreen from "./app/Screens/CategoriesScreen";
-import MealDescriptionScreen from "./app/Screens/MealDescriptionScreen";
+import MealDetailsScreen from "./app/Screens/MealDetailsScreen";
+import MealsViewScreen from "./app/Screens/MealsViewScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -38,11 +39,16 @@ export default function App() {
             },
           }}
         >
-          <Stack.Screen name="MealsCategories" component={CategoriesScreen} />
           <Stack.Screen
-            name="MealDescription"
-            component={MealDescriptionScreen}
+            name="MealsCategories"
+            component={CategoriesScreen}
+            options={{
+              title: "All Categories",
+              headerTintColor: "#fff",
+            }}
           />
+          <Stack.Screen name="MealsView" component={MealsViewScreen} />
+          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
