@@ -14,8 +14,7 @@ type CategoriesScreenProps = NativeStackScreenProps<
 function CategoriesScreen({ navigation }: CategoriesScreenProps) {
   function renderCategoryItem({ item }: ListRenderItemInfo<Category>) {
     function presshandler() {
-      navigation.navigate("MealDescription", {
-        user: "Raid",
+      navigation.navigate("MealsView", {
         categoryId: item.id,
       });
     }
