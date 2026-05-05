@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     marginTop: 35,
     margin: 20,
     borderRadius: 8,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#8f6d6d",
     overflow: Platform.OS === "android" ? "hidden" : "visible",
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 2 },
@@ -87,8 +87,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   image: {
-    width: "100%",
-    height: 200,
+    borderRadius: 8,
+    margin: 14,
+    marginRight: 14,
+    width: "95%",
+    height: 250,
   },
   titleContainer: {
     padding: 8,
