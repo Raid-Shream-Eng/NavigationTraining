@@ -1,50 +1,143 @@
-# Welcome to your Expo app 👋
+# Navigation-Training
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Navigation-Training is a React Native training project built with Expo. The app focuses on practicing stack navigation by moving through a simple meal browsing flow: categories, filtered meals, and meal details.
 
-## Get started
+This README is written for an instructor reviewing the project. It explains what the app currently does, how to run it, and how the main files are organized.
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- Browse meal categories in a two-column grid.
+- Select a category to view meals that belong to it.
+- Open a meal details screen from a meal list item.
+- View meal images, ingredients, and preparation steps.
+- Display meal metadata such as duration, complexity, and affordability.
+- Use typed React Navigation stack params for the main app screens.
+- Load a custom Aptos font through Expo.
 
-2. Start the app
+## Tech Stack
 
-   ```bash
-   npx expo start
-   ```
+- Expo 54
+- React 19
+- React Native 0.81
+- TypeScript
+- React Navigation native stack
+- Expo Font
+- Local dummy data for categories and meals
 
-In the output, you'll find options to open the app in a
+## Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install the project dependencies first:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start the Expo development server:
 
-## Learn more
+```bash
+npm start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+After the server starts, Expo will show options for opening the app on a connected device, an Android emulator, Expo Go, or the web.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+To run directly on Android:
 
-## Join the community
+```bash
+npm run android
+```
 
-Join our community of developers creating universal apps.
+To run the web version:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm run web
+```
+
+## Available Scripts
+
+- `npm start`: Starts the Expo development server.
+- `npm run android`: Builds and runs the app on Android.
+- `npm run ios`: Builds and runs the app on iOS.
+- `npm run web`: Starts the app for web.
+- `npm run lint`: Runs Expo linting.
+
+## Project Structure
+
+```text
+.
+|-- App.tsx
+|-- index.js
+|-- app
+|   |-- Data
+|   |   `-- dummy-data.js
+|   |-- Screens
+|   |   |-- CategoriesScreen.tsx
+|   |   |-- MealsViewScreen.tsx
+|   |   `-- MealDetailsScreen.tsx
+|   |-- models
+|   |   |-- category.js
+|   |   `-- meal.js
+|   `-- navigation
+|       `-- types.ts
+|-- Components
+|   `-- CategoriesScreen
+|       |-- CategoryGridTile.tsx
+|       `-- MealItem.tsx
+`-- assets
+    |-- fonts
+    `-- images
+```
+
+Important files:
+
+- `App.tsx`: Sets up the navigation container, native stack navigator, screen options, and custom font loading.
+- `app/Screens/CategoriesScreen.tsx`: Shows all meal categories.
+- `app/Screens/MealsViewScreen.tsx`: Filters meals by selected category and updates the screen title.
+- `app/Screens/MealDetailsScreen.tsx`: Shows details for a selected meal.
+- `Components/CategoriesScreen/CategoryGridTile.tsx`: Renders a pressable category tile.
+- `Components/CategoriesScreen/MealItem.tsx`: Renders a pressable meal card.
+- `app/navigation/types.ts`: Defines the typed stack navigation params.
+- `app/Data/dummy-data.js`: Stores the sample categories and meals used by the app.
+
+## App Flow
+
+The app uses a native stack navigator with three main screens:
+
+```text
+MealsCategories -> MealsView -> MealDetails
+```
+
+1. `MealsCategories` displays all available meal categories.
+2. Selecting a category navigates to `MealsView` with a `categoryId`.
+3. `MealsView` filters the local meal data by that category and displays matching meals.
+4. Selecting a meal navigates to `MealDetails` with a `mealId`.
+5. `MealDetails` finds the selected meal and displays its image, ingredients, and steps.
+
+## Data Model
+
+The project uses local dummy data instead of an API or database.
+
+Categories include:
+
+- `id`
+- `title`
+- `color`
+
+Meals include:
+
+- category IDs
+- title
+- affordability
+- complexity
+- image URL
+- duration
+- ingredients
+- preparation steps
+- dietary flags such as gluten-free, vegan, vegetarian, and lactose-free
+
+## Known Limitations / Future Work
+
+- Meal data is currently stored locally in `dummy-data.js`.
+- The favorite button in the meal details header is present but does not save favorites yet.
+- There is no persistent storage.
+- Dietary flags exist in the data model but are not exposed as filters in the UI.
+- Some header actions are still experimental placeholders.
