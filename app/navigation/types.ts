@@ -6,4 +6,6 @@ export type RootStackParamList = {
   MealDetails: {
     mealId: string;
   };
+  DrawerNavigetor: undefined;
+  Favorites: undefined;
 };
